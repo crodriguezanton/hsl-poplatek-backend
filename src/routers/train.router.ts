@@ -19,8 +19,8 @@ export class TrainRouter {
 
   private addRoutes() {
     this.router.route("/check-in")
-      .post((req, res)=>res.sendStatus(200));
+      .post((req, res) => res.sendStatus(200));
     this.router.route("/check-out")
-      .post((req, res)=>res.sendStatus(201));
+      .post((req, res) => res.sendStatus(201));
   }
 }

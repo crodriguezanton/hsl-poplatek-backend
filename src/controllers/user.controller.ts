@@ -2,7 +2,6 @@ import UserModel from "../models/user.model";
 import { Request, Response } from "express";
 
 class UserController {
-    
 }
 
 const User = {

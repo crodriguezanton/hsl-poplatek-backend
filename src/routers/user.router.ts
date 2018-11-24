@@ -19,6 +19,6 @@ export class UserRouter {
 
   private addRoutes() {
     this.router.route("/")
-      .post((req, res)=>res.sendStatus(200));
+      .post((req, res) => res.sendStatus(200));
   }
 }
