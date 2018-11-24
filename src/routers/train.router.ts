@@ -1,5 +1,4 @@
 import { Request, Response, Router } from "express";
-import User from "../controllers/user.controller";
 
 export class TrainRouter {
   private router: Router;
@@ -21,6 +20,8 @@ export class TrainRouter {
     this.router.route("/check-in")
       .post((req, res) => res.sendStatus(200));
     this.router.route("/check-out")
-      .post((req, res) => res.sendStatus(201));
+      .post((req, res) => res.sendStatus(200));
+    this.router.route("/arrived-at/:id")
+      .get((req, res) => res.sendStatus(200));
   }
 }
