@@ -1,7 +1,7 @@
 import { Schema, mongoose } from "../utils/mongoose";
 
 const UserSchema = new Schema({
-    entityId: {
+    phoneNumber: {
         type: String,
         required: true,
     },
@@ -13,21 +13,8 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    email: {
+    MAC: {
         type: String,
-        required: true,
-    },
-    publicKey: {
-        type: String,
-        required: true,
-    },
-    privateKey: {
-        type: String,
-        required: true,
-        select: false,
-    },
-    role: {
-        type: Number,
         required: true,
     },
     __v: {

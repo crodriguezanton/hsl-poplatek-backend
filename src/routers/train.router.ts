@@ -22,6 +22,6 @@ export class TrainRouter {
     this.router.route("/check-out")
       .post((req, res) => res.sendStatus(200));
     this.router.route("/arrived-at/:id")
-      .get((req, res) => res.sendStatus(200));
+      .get((req, res) => res.send([]));
   }
 }
