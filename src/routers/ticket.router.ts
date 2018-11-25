@@ -20,7 +20,8 @@ export class TicketRouter {
   private addRoutes() {
     this.router.route("/:user")
       .get((req, res) => {
-        res.send(Ticket.controller.getUserTicket(req.params.user));
+        const ticket = Ticket.controller.getUserTicket(req.params.user);
+        res.send(ticket);
       });
   }
 }
