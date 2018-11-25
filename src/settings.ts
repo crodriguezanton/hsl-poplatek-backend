@@ -12,7 +12,7 @@ const settings: IServiceSettings = {
     port: parseInt(process.env.PORT || defaultPort, undefined),
   },
   mongoose: {
-    uri: "mongodb://localhost:27017/popin3",
+    uri: "mongodb://localhost:27017/popin4",
   },
 };
 
