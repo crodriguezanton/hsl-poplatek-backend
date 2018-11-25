@@ -19,8 +19,8 @@ export class TicketRouter {
 
   private addRoutes() {
     this.router.route("/:user")
-      .get((req, res) => {
-        const ticket = Ticket.controller.getUserTicket(req.params.user);
+      .get(async (req, res) => {
+        const ticket = await Ticket.controller.getUserTicket(req.params.user);
         res.send(ticket);
       });
   }
