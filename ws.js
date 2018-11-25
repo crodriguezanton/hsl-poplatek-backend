@@ -2,7 +2,7 @@ const mqtt = require('mqtt');
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var request = require('graphql-request').request;
+var requestgraph = require('graphql-request').request;
 var moment = require('moment');
 var request = require('request');
 
@@ -28,7 +28,7 @@ client.on('connect', ()=> {
 
     client.on('message', (topic, message) => {
         splitted_topic = topic.split('/')
-        request('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', `{ 
+        requestgraph('https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql', `{ 
             stop(id: "HSL:`+splitted_topic[12]+`") {
               name
               lat
