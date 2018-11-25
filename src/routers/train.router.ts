@@ -1,4 +1,6 @@
 import { Request, Response, Router } from "express";
+import User from "../controllers/user.controller";
+import Ticket from "../controllers/ticket.controller";
 
 export class TrainRouter {
   private router: Router;
@@ -18,10 +20,31 @@ export class TrainRouter {
 
   private addRoutes() {
     this.router.route("/check-in")
-      .post((req, res) => res.sendStatus(200));
+      .post(async (req, res) => {
+        let zone = "Helsinki";
+        let charge = 'cpi_1';
+        await User.controller.updateUser({customerId: req.body.user}, {station: null});
+        Ticket.controller.createTicket(req.body.user, {
+          type: 'Single Ticket',
+          valid: '15:00',
+          group: 'Adult',
+          zone,
+          price: 220,
+          charge
+        });
+      }); // Create ticket
     this.router.route("/check-out")
-      .post((req, res) => res.sendStatus(200));
+      .post((req, res) => {
+        Ticket.controller.deleteTicket(req.body.user);
+      }); // Expire ticket
     this.router.route("/arrived-at/:id")
-      .get((req, res) => res.send([]));
+      .get(async (req, res) => {
+        let users = await User.controller.getUsersInStation(req.params.id);
+        res.send(users);
+      }); // Find users with stop :id
+    this.router.route("/new-zone")
+      .get(async (req, res) => {
+        await Ticket.controller.changeZone();
+      });
   }
 }

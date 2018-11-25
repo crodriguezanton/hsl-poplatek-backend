@@ -4,6 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var request = require('graphql-request').request;
 var moment = require('moment');
+var request = require('request');
 
 
 server.listen(3001);
@@ -19,6 +20,7 @@ const topic = '/hfp/v1/journey/ongoing/bus/+/00798/+/+/+/+/+/+/#';
 const client  = mqtt.connect('mqtts://mqtt.hsl.fi:443');
 
 let doorStatus = 0;
+let currentZone = null;
 
 
 client.on('connect', ()=> {
@@ -73,10 +75,15 @@ client.on('connect', ()=> {
                     zone = data.stop.zoneId;
             }
 
+            if (currentZone !== null && zone !== currentZone) {
+                await request.get('http://localhost:3000/train/new-zone');
+            }
+            currentZone = zone;
+
             if (doorStatus !== vehicle_position.drst) {
                 if (doorStatus === 0) {
                     console.log('arrived');
-                    io.emit('arrivedAt', {station: data.stop.name});
+                    io.emit('arrivedAt', {station: splitted_topic[12]});
                 } else {
                     console.log('departed');
                     io.emit('departedFrom', {});

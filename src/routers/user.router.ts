@@ -20,8 +20,21 @@ export class UserRouter {
   private addRoutes() {
     this.router.route("/")
       .post((req, res) => res.sendStatus(200));
-    this.router.route("/station")
-      .get((req, res) => res.sendStatus(200))
-      .post((req, res) => res.sendStatus(200));
+    this.router.route("/station/:id")
+      .get(async (req, res) => {
+        try {
+          let user: any = await  User.model.findOne({_id: req.params.id})
+          res.send({station: user!.station});
+        } catch (error) {
+          res.status(500).send(error);
+        }
+      })
+      .post((req, res) => {
+        try {
+          User.controller.updateUser(req.params.user, {station: req.body.station})
+        } catch (error) {
+          res.status(500).send(error);
+        }
+      });
   }
 }

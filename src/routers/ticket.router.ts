@@ -1,4 +1,5 @@
 import { Request, Response, Router } from "express";
+import Ticket from "../controllers/ticket.controller";
 
 export class TicketRouter {
   private router: Router;
@@ -18,6 +19,8 @@ export class TicketRouter {
 
   private addRoutes() {
     this.router.route("/:user")
-      .get((req, res) => res.sendStatus(200));
+      .get((req, res) => {
+        return Ticket.controller.getUserTicket(req.params.user);
+      });
   }
 }

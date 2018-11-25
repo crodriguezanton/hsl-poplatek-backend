@@ -1,21 +1,21 @@
 import { Schema, mongoose } from "../utils/mongoose";
 
 const UserSchema = new Schema({
-    phoneNumber: {
+    customerId: {
         type: String,
         required: true,
     },
-    firstName: {
+    name: {
         type: String,
         required: true,
     },
-    lastName: {
+    mac: {
         type: String,
         required: true,
     },
-    MAC: {
+    station: {
         type: String,
-        required: true,
+        required: false,
     },
     __v: {
         type: Number,
