@@ -16,7 +16,7 @@ class ExpressServer {
     constructor(options: IExpressServerOptions) {
       this.options = options;
       this.app = express();
-      this.app.disable('etag');
+      this.app.disable("etag");
       this.middleware();
       this.health();
     }
