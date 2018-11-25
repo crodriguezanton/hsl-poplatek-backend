@@ -3,7 +3,9 @@ import { Request, Response } from "express";
 
 class TicketController {
     public async getUserTicket(user) {
-        return await Ticket.model.findOne({user, active: true});
+        const ticket = await Ticket.model.findOne({user, active: true});
+        console.log(ticket);
+        return ticket;
     }
 
     public createTicket(user, ticket) {
