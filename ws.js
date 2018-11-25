@@ -98,6 +98,7 @@ client.on('connect', ()=> {
                 status: {
                     zone,
                     nextStop: data.stop.name,
+                    nextStopId: splitted_topic[12],
                     doorsOpened: vehicle_position.drst === 1,
                     arrivingAt: timeToArriveFormat
                 }
