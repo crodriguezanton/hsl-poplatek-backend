@@ -76,7 +76,7 @@ client.on('connect', ()=> {
             }
 
             if (currentZone !== null && zone !== currentZone) {
-                await request.get('http://localhost:3000/train/new-zone');
+                request.get('http://localhost:3000/train/new-zone');
             }
             currentZone = zone;
 
