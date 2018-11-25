@@ -21,6 +21,10 @@ export class TicketRouter {
     this.router.route("/:user")
       .get(async (req, res) => {
         const ticket = await Ticket.controller.getUserTicket(req.params.user);
+        if (!ticket) {
+          res.sendStatus(201);
+          return;
+        }
         res.send(ticket);
       });
   }
