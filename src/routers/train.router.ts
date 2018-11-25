@@ -21,6 +21,7 @@ export class TrainRouter {
   private addRoutes() {
     this.router.route("/check-in")
       .post(async (req, res) => {
+        // TODO: Graphql get station zone
         const zone = "Helsinki";
         const charge = "cpi_1";
         await User.controller.updateUser({customerId: req.body.user}, {station: null});

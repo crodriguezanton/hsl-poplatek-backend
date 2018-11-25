@@ -19,6 +19,10 @@ export class UserRouter {
 
   private addRoutes() {
     this.router.route("/")
+      .get((req, res) => {
+        const users = User.model.find({});
+        res.send(users);
+      })
       .post((req, res) => {
         User.controller.createUser(req, res);
       });
