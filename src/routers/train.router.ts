@@ -24,8 +24,8 @@ export class TrainRouter {
         // TODO: Graphql get station zone
         const zone = "Helsinki";
         const charge = "cpi_1";
-        await User.controller.updateUser({customerId: req.body.user}, {station: null});
-        Ticket.controller.createTicket(req.body.user, {
+        await User.controller.updateUser(req.body.passenger.customerId, {station: null});
+        Ticket.controller.createTicket(req.body.passenger.customerId, {
           type: "Single Ticket",
           valid: "15:00",
           group: "Adult",
@@ -36,7 +36,7 @@ export class TrainRouter {
       }); // Create ticket
     this.router.route("/check-out")
       .post((req, res) => {
-        Ticket.controller.deleteTicket(req.body.user);
+        Ticket.controller.deleteTicket(req.body.passenger.customerId);
       }); // Expire ticket
     this.router.route("/arrived-at/:id")
       .get(async (req, res) => {
