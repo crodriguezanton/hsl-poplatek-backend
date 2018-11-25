@@ -21,6 +21,7 @@ export class UserRouter {
     this.router.route("/")
       .get((req, res) => {
         const users = User.model.find({});
+        console.log(users);
         res.send(users);
       })
       .post((req, res) => {
