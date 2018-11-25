@@ -25,7 +25,7 @@ export class UserRouter {
     this.router.route("/station/:id")
       .get(async (req, res) => {
         try {
-          const user: any = await  User.model.findOne({_id: req.params.id});
+          const user: any = await  User.model.findOne({customerId: req.params.id});
           res.send({station: user!.station});
         } catch (error) {
           res.status(500).send(error);
