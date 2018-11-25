@@ -21,16 +21,16 @@ export class TrainRouter {
   private addRoutes() {
     this.router.route("/check-in")
       .post(async (req, res) => {
-        let zone = "Helsinki";
-        let charge = 'cpi_1';
+        const zone = "Helsinki";
+        const charge = "cpi_1";
         await User.controller.updateUser({customerId: req.body.user}, {station: null});
         Ticket.controller.createTicket(req.body.user, {
-          type: 'Single Ticket',
-          valid: '15:00',
-          group: 'Adult',
+          type: "Single Ticket",
+          valid: "15:00",
+          group: "Adult",
           zone,
           price: 220,
-          charge
+          charge,
         });
       }); // Create ticket
     this.router.route("/check-out")
@@ -39,7 +39,7 @@ export class TrainRouter {
       }); // Expire ticket
     this.router.route("/arrived-at/:id")
       .get(async (req, res) => {
-        let users = await User.controller.getUsersInStation(req.params.id);
+        const users = await User.controller.getUsersInStation(req.params.id);
         res.send(users);
       }); // Find users with stop :id
     this.router.route("/new-zone")

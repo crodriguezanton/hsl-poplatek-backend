@@ -19,11 +19,13 @@ export class UserRouter {
 
   private addRoutes() {
     this.router.route("/")
-      .post((req, res) => res.sendStatus(200));
+      .post((req, res) => {
+        User.controller.createUser(req, res);
+      });
     this.router.route("/station/:id")
       .get(async (req, res) => {
         try {
-          let user: any = await  User.model.findOne({_id: req.params.id})
+          const user: any = await  User.model.findOne({_id: req.params.id});
           res.send({station: user!.station});
         } catch (error) {
           res.status(500).send(error);
@@ -31,7 +33,7 @@ export class UserRouter {
       })
       .post((req, res) => {
         try {
-          User.controller.updateUser(req.params.user, {station: req.body.station})
+          User.controller.updateUser(req.params.user, {station: req.body.station});
         } catch (error) {
           res.status(500).send(error);
         }

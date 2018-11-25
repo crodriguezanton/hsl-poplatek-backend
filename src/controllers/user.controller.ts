@@ -9,7 +9,7 @@ class UserController {
     }
 
     public async updateUser(user, updates) {
-        await UserModel.update({customerId: user}, updates)
+        await UserModel.update({customerId: user}, updates);
     }
 
     public async getUsersInStation(station) {
