@@ -33,7 +33,7 @@ export class UserRouter {
       })
       .post((req, res) => {
         try {
-          User.controller.updateUser(req.params.user, {station: req.body.station});
+          User.controller.updateUser(req.params.id, {station: req.body.station});
         } catch (error) {
           res.status(500).send(error);
         }
